@@ -1,0 +1,12 @@
+{
+	"Arrow Function": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "af",
+		"body": [
+			"const functionName = () => {",
+			"  $1",
+			"}"
+		],
+		"description": "Creates an arrow function"
+	}
+}

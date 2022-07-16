@@ -1,0 +1,22 @@
+{
+	"Simple Functional Component": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "cfs",
+		"body": [
+			"import React from 'react';",
+			"import { Text } from 'react-native';",
+			"",
+			"const ComponentName: React.FC<any> = ({ children }) => {",
+			"  return (",
+			"    <Text>",
+			"      $1",
+			"    </Text>",
+			"  )",
+			"}",
+			"",
+			"export default ComponentName;",
+			"",
+		],
+		"description": "Creates simple functional component"
+	}
+}

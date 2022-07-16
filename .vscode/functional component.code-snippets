@@ -1,0 +1,29 @@
+{
+	"Functional Component": {
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "cf",
+		"body": [
+			"import React from 'react';",
+			"import { Text } from 'react-native';",
+			"",
+			"interface I$1ComponentName {",
+			"  valueA: string;",
+			"  valueB: string;",
+			"}",
+			"",
+			"const ComponentName: React.FC<IComponentName> = (",
+			"  { valueA = null, valueB = null }",
+			") => {",
+			"  return (",
+			"    <Text>",
+			"      ",
+			"    </Text>",
+			"  )",
+			"}",
+			"",
+			"export default ComponentName;",
+			"",
+		],
+		"description": "Creates functional component"
+	}
+}
