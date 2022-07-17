@@ -5,14 +5,14 @@ import style from 'styles/form';
 import FormButtons from './FormButtons';
 import DatePicker from './DatePicker';
 
-interface IForm {
+interface ITaskForm {
   task: INewTask;
   closeModal: () => void;
   saveTask: () => void;
   setTask: (task: INewTask) => void;
 }
 
-const Form: React.FC<IForm> = (
+const TaskForm: React.FC<ITaskForm> = (
   { task, closeModal, saveTask, setTask }
 ) => {
   const [text, setText] = useState<string>(task.description);
@@ -45,4 +45,4 @@ const Form: React.FC<IForm> = (
   )
 }
 
-export default Form;
+export default TaskForm;

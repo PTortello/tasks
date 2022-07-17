@@ -26,7 +26,7 @@ const AuthForm: React.FC<IAuthForm> = (
 
   return (
       <View style={style.container}>
-        <Text style={style.subtitle}>
+        <Text style={style.title}>
           {newUser ? 'Crie sua conta' : 'Login'}
         </Text>
         {newUser &&

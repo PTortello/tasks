@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-native';
-import Form from 'components/Form';
+import TaskForm from 'components/TaskForm';
 import GrayArea from 'components/GrayArea';
 
 export interface INewTask {
@@ -37,7 +37,7 @@ const AddTask: React.FC<IAddTask> = (
       animationType='slide'
     >
       <GrayArea closeModal={closeModal} />
-      <Form
+      <TaskForm
         task={task}
         closeModal={closeModal}
         saveTask={() => saveTask(task)}
