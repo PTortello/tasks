@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TouchableOpacity, View } from 'react-native';
 import style from 'styles/authForm';
+import AuthInput from './AuthInput';
 
 interface IAuthForm {
   valueA?: string;
@@ -30,29 +31,29 @@ const AuthForm: React.FC<IAuthForm> = (
           {newUser ? 'Crie sua conta' : 'Login'}
         </Text>
         {newUser &&
-          <TextInput
-            style={style.input}
+          <AuthInput
+            icon='user'
             placeholder='Nome'
             value={name}
             onChangeText={setName}
           />
         }
-        <TextInput
-          style={style.input}
+        <AuthInput
+          icon='at'
           placeholder='E-mail'
           value={email}
           onChangeText={setEmail}
         />
-        <TextInput
-          style={style.input}
+        <AuthInput
+          icon='lock'
           placeholder='Senha'
           value={password}
           onChangeText={setPassword}
           secureTextEntry
         />
         {newUser &&
-          <TextInput
-            style={style.input}
+          <AuthInput
+            icon='asterisk'
             placeholder='Confirmar Senha'
             value={confirmPassword}
             onChangeText={setConfirmPassword}

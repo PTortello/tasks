@@ -13,32 +13,28 @@ const style = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 10
-  },
-  input: {
-    marginVertical: 5,
-    backgroundColor: '#FFFFFF',
-    padding: 10
+    marginBottom: 15
   },
   button: {
     backgroundColor: '#008800',
-    marginTop: 5,
+    marginTop: 15,
     padding: 10,
-    alignItems: 'center'
+    alignItems: 'center',
+    borderRadius: 5
   },
   buttonText: {
     fontFamily: global.fontFamily,
-    color: '#FFFFFF',
-    fontSize: 20
+    fontSize: 20,
+    color: '#FFFFFF'
   },
   switchButton: {
-    backgroundColor: 'rgba(255, 255, 255, 0)'
+    backgroundColor: 'rgba(0, 0, 0, 0)'
   },
   switchButtonText: {
     fontSize: 18,
     fontWeight: 'bold',
     textDecorationLine: 'underline'
-  },
+  }
 })
 
 export default style;
