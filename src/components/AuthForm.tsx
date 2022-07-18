@@ -26,56 +26,56 @@ const AuthForm: React.FC<IAuthForm> = (
   }
 
   return (
-      <View style={style.container}>
-        <Text style={style.title}>
-          {newUser ? 'Crie sua conta' : 'Login'}
-        </Text>
-        {newUser &&
-          <AuthInput
-            icon='user'
-            placeholder='Nome'
-            value={name}
-            onChangeText={setName}
-          />
-        }
+    <View style={style.container}>
+      <Text style={style.title}>
+        {newUser ? 'Crie sua conta' : 'Login'}
+      </Text>
+      {newUser &&
         <AuthInput
-          icon='at'
-          placeholder='E-mail'
-          value={email}
-          onChangeText={setEmail}
+          icon='user'
+          placeholder='Nome'
+          value={name}
+          onChangeText={setName}
         />
+      }
+      <AuthInput
+        icon='at'
+        placeholder='E-mail'
+        value={email}
+        onChangeText={setEmail}
+      />
+      <AuthInput
+        icon='lock'
+        placeholder='Senha'
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+      {newUser &&
         <AuthInput
-          icon='lock'
-          placeholder='Senha'
-          value={password}
-          onChangeText={setPassword}
+          icon='asterisk'
+          placeholder='Confirmar Senha'
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
           secureTextEntry
         />
-        {newUser &&
-          <AuthInput
-            icon='asterisk'
-            placeholder='Confirmar Senha'
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            secureTextEntry
-          />
-        }
-        <TouchableOpacity onPress={submitForm}>
-          <View style={style.button}>
-            <Text style={style.buttonText}>
-              {newUser ? 'Cadastrar' : 'Entrar'}
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[style.button, style.switchButton]}
-          onPress={() => setNewUser(!newUser)}
-        >
-          <Text style={[style.buttonText, style.switchButtonText]}>
-            {newUser ? 'Já possui conta?' : 'Criar nova conta'}
+      }
+      <TouchableOpacity onPress={submitForm}>
+        <View style={style.button}>
+          <Text style={style.buttonText}>
+            {newUser ? 'Cadastrar' : 'Entrar'}
           </Text>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[style.button, style.switchButton]}
+        onPress={() => setNewUser(!newUser)}
+      >
+        <Text style={[style.buttonText, style.switchButtonText]}>
+          {newUser ? 'Já possui conta?' : 'Criar nova conta'}
+        </Text>
+      </TouchableOpacity>
+    </View>
   )
 }
 
