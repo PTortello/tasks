@@ -5,18 +5,17 @@ import style from 'styles/auth';
 import AuthForm from 'components/AuthForm';
 
 interface IAuth {
-  valueA?: string;
-  valueB?: string;
+  setIsSignedIn: (isSignedIn: boolean) => void;
 }
 
 const Auth: React.FC<IAuth> = (
-  { valueA = null, valueB = null }
+  { setIsSignedIn }
 ) => {
   return (
     <ImageBackground source={backgroundImage} style={style.background}>
-      <AuthForm />
+      <AuthForm setIsSignedIn={setIsSignedIn} />
     </ImageBackground>
   )
 }
 
-export default Auth;
+export default React.memo(Auth);

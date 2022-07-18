@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { INewTask } from 'screens/AddTask';
 import style from 'styles/form';
-import FormButtons from './FormButtons';
+import { INewTask } from './AddTask';
 import DatePicker from './DatePicker';
+import FormButtons from './FormButtons';
 
 interface ITaskForm {
   task: INewTask;

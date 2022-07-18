@@ -1,78 +1,84 @@
 import React, { useState } from 'react';
-import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { IUser, signup } from 'services/user';
+import { signin } from 'services/auth';
 import style from 'styles/authForm';
 import AuthInput from './AuthInput';
 
+const initialState: IUser = {
+  name: '',
+  email: '',
+  password: '',
+  confirmPass: ''
+}
+
 interface IAuthForm {
-  valueA?: string;
-  valueB?: string;
+  setIsSignedIn: (isSignedIn: boolean) => void;
 }
 
 const AuthForm: React.FC<IAuthForm> = (
-  { valueA = null, valueB = null }
+  { setIsSignedIn }
 ) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [name, setName] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [newUser, setNewUser] = useState<boolean>(false);
+  const [user, setUser] = useState<IUser>({...initialState});
+  const [isNewUser, setIsNewUser] = useState<boolean>(false);
 
-  const submitForm = () => {
-    if (newUser) {
-      Alert.alert('Sucesso', 'Criar conta');
+  const submitForm = async () => {
+    if (isNewUser) {
+      await signup(user) && setIsNewUser(false);
+      setUser({...initialState});
     } else {
-      Alert.alert('Sucesso', 'Login');
+      await signin(user) && setIsSignedIn(true);
     }
   }
 
   return (
     <View style={style.container}>
       <Text style={style.title}>
-        {newUser ? 'Crie sua conta' : 'Login'}
+        {isNewUser ? 'Crie sua conta' : 'Login'}
       </Text>
-      {newUser &&
+      {isNewUser &&
         <AuthInput
           icon='user'
           placeholder='Nome'
-          value={name}
-          onChangeText={setName}
+          value={user.name}
+          onChangeText={(name) => setUser({...user, name})}
         />
       }
       <AuthInput
         icon='at'
         placeholder='E-mail'
-        value={email}
-        onChangeText={setEmail}
+        value={user.email}
+        onChangeText={(email) => setUser({...user, email})}
       />
       <AuthInput
         icon='lock'
         placeholder='Senha'
-        value={password}
-        onChangeText={setPassword}
+        value={user.password}
+        onChangeText={(password) => setUser({...user, password})}
         secureTextEntry
       />
-      {newUser &&
+      {isNewUser &&
         <AuthInput
           icon='asterisk'
           placeholder='Confirmar Senha'
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
+          value={user.confirmPass}
+          onChangeText={(confirmPass) => setUser({...user, confirmPass})}
           secureTextEntry
         />
       }
       <TouchableOpacity onPress={submitForm}>
         <View style={style.button}>
           <Text style={style.buttonText}>
-            {newUser ? 'Cadastrar' : 'Entrar'}
+            {isNewUser ? 'Cadastrar' : 'Entrar'}
           </Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity
         style={[style.button, style.switchButton]}
-        onPress={() => setNewUser(!newUser)}
+        onPress={() => setIsNewUser(!isNewUser)}
       >
         <Text style={[style.buttonText, style.switchButtonText]}>
-          {newUser ? 'Já possui conta?' : 'Criar nova conta'}
+          {isNewUser ? 'Já possui conta?' : 'Criar nova conta'}
         </Text>
       </TouchableOpacity>
     </View>

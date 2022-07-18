@@ -7,11 +7,17 @@ import style from 'styles/taskList';
 import Header from 'components/Header';
 import Task, { ITask } from 'components/Task';
 import AddTaskButton from 'components/AddTaskButton';
-import AddTask, { INewTask } from './AddTask';
+import AddTask, { INewTask } from 'components/AddTask';
 
 const MMKV = new MMKVLoader().initialize();
 
-const TaskList = () => {
+interface ITaskList {
+  setIsSignedIn: (isSignedIn: boolean) => void;
+}
+
+const TaskList: React.FC<ITaskList> = (
+  { setIsSignedIn }
+) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [showDone, setShowDone] = useState<boolean>(true);
@@ -114,4 +120,4 @@ const TaskList = () => {
   )
 }
 
-export default TaskList;
+export default React.memo(TaskList);

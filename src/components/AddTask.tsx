@@ -22,7 +22,7 @@ const newTask: INewTask = {
 const AddTask: React.FC<IAddTask> = (
   { showModal, addTask, closeModal }
 ) => {
-  const [task, setTask] = useState({...newTask});
+  const [task, setTask] = useState<INewTask>({...newTask});
 
   const saveTask = (task: INewTask) => {
     addTask(task);
