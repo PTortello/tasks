@@ -12,18 +12,12 @@ interface IAuthInput {
 }
 
 const AuthInput: React.FC<IAuthInput> = (
-  { icon, placeholder, secureTextEntry, value, onChangeText }
+  { icon, ...props }
 ) => {
   return (
     <View style={style.container}>
       <Icon name={icon} size={20} style={style.icon} />
-      <TextInput
-        style={style.input}
-        placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
-        value={value}
-        onChangeText={onChangeText}
-      />
+      <TextInput {...props} style={style.input} />
     </View>
   )
 }
