@@ -3,6 +3,8 @@ import { Alert, FlatList, View } from 'react-native';
 import { MMKVLoader } from "react-native-mmkv-storage";
 import todayImage from '../../assets/imgs/today.jpg';
 import dateFormatter from 'utils/dateFormatter';
+import getLocalData from 'utils/getLocalData';
+import { read } from 'services/task';
 import style from 'styles/taskList';
 import Header from 'components/Header';
 import Task, { ITask } from 'components/Task';
@@ -60,20 +62,19 @@ const TaskList: React.FC<ITaskList> = (
   useEffect(() => {
     const setData = async () => {
       const state = {
-        tasks: tasks,
         showDone: showDone
       }
       await MMKV.setStringAsync('state', JSON.stringify(state));
     }
     loaded && setData();
-  }, [tasks, showDone]);
+  }, [showDone]);
 
   useEffect(() => {
     const getData = async () => {
-      const stateStr = await MMKV.getStringAsync('state');
-      const state = stateStr && JSON.parse(stateStr);
-      setTasks(state.tasks);
-      setShowDone(state.showDone);
+      const localData = await getLocalData();
+      const tasks = await read();
+      setShowDone(localData.showDone);
+      setTasks(tasks);
       setLoaded(true);
     }
     !loaded && getData();
