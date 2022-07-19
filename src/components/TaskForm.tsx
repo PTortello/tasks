@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { INewTask } from 'screens/AddTask';
 import style from 'styles/form';
-import FormButtons from './FormButtons';
+import { INewTask } from './AddTask';
 import DatePicker from './DatePicker';
+import FormButtons from './FormButtons';
 
-interface IForm {
+interface ITaskForm {
   task: INewTask;
   closeModal: () => void;
   saveTask: () => void;
   setTask: (task: INewTask) => void;
 }
 
-const Form: React.FC<IForm> = (
+const TaskForm: React.FC<ITaskForm> = (
   { task, closeModal, saveTask, setTask }
 ) => {
   const [text, setText] = useState<string>(task.description);
@@ -45,4 +45,4 @@ const Form: React.FC<IForm> = (
   )
 }
 
-export default Form;
+export default TaskForm;

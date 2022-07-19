@@ -14,7 +14,7 @@ const IconBar: React.FC<IIconBar> = (
 ) => {
   return (
     <View style={style.container}>
-      <TouchableOpacity onPress={setShowDone}>
+      <TouchableOpacity onPress={setShowDone} style={style.touchable}>
         <Icon
           name={showDone ? 'eye' : 'eye-slash'}
           size={20}
