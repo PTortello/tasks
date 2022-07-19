@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { IUser, signup } from 'services/user';
 import { signin } from 'services/auth';
+import validateForm from 'utils/validateForm';
 import style from 'styles/authForm';
 import AuthInput from './AuthInput';
 
@@ -10,6 +11,10 @@ const initialState: IUser = {
   email: '',
   password: '',
   confirmPass: ''
+}
+
+const disabledStyle = {
+  backgroundColor: '#AAAAAA'
 }
 
 interface IAuthForm {
@@ -21,6 +26,12 @@ const AuthForm: React.FC<IAuthForm> = (
 ) => {
   const [user, setUser] = useState<IUser>({...initialState});
   const [isNewUser, setIsNewUser] = useState<boolean>(false);
+  const [isValidForm, setIsValidForm] = useState<boolean>(false);
+
+  const switchForm = () => {
+    setUser({...initialState});
+    setIsNewUser(!isNewUser);
+  }
 
   const submitForm = async () => {
     if (isNewUser) {
@@ -31,6 +42,10 @@ const AuthForm: React.FC<IAuthForm> = (
     }
   }
 
+  useEffect(() => {
+    setIsValidForm(validateForm(user, isNewUser));
+  }, [user, isNewUser])
+
   return (
     <View style={style.container}>
       <Text style={style.title}>
@@ -39,6 +54,7 @@ const AuthForm: React.FC<IAuthForm> = (
       {isNewUser &&
         <AuthInput
           icon='user'
+          autoFocus={isNewUser}
           placeholder='Nome'
           value={user.name}
           onChangeText={(name) => setUser({...user, name})}
@@ -46,6 +62,7 @@ const AuthForm: React.FC<IAuthForm> = (
       }
       <AuthInput
         icon='at'
+        autoFocus={!isNewUser}
         placeholder='E-mail'
         value={user.email}
         onChangeText={(email) => setUser({...user, email})}
@@ -66,8 +83,11 @@ const AuthForm: React.FC<IAuthForm> = (
           secureTextEntry
         />
       }
-      <TouchableOpacity onPress={submitForm}>
-        <View style={style.button}>
+      <TouchableOpacity
+        onPress={submitForm}
+        disabled={!isValidForm}
+      >
+        <View style={[style.button, !isValidForm && disabledStyle]}>
           <Text style={style.buttonText}>
             {isNewUser ? 'Cadastrar' : 'Entrar'}
           </Text>
@@ -75,7 +95,7 @@ const AuthForm: React.FC<IAuthForm> = (
       </TouchableOpacity>
       <TouchableOpacity
         style={[style.button, style.switchButton]}
-        onPress={() => setIsNewUser(!isNewUser)}
+        onPress={switchForm}
       >
         <Text style={[style.buttonText, style.switchButtonText]}>
           {isNewUser ? 'Já possui conta?' : 'Criar nova conta'}

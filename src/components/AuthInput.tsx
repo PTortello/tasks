@@ -5,6 +5,7 @@ import style from 'styles/authInput';
 
 interface IAuthInput {
   icon: string;
+  autoFocus?: boolean;
   placeholder: string;
   secureTextEntry?: boolean;
   value: string;
