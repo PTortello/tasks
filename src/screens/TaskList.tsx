@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, FlatList, View } from 'react-native';
-import { MMKVLoader } from "react-native-mmkv-storage";
 import todayImage from '../../assets/imgs/today.jpg';
 import dateFormatter from 'utils/dateFormatter';
 import { getLocalData, setLocalData } from 'utils/localData';
@@ -10,8 +9,6 @@ import Header from 'components/Header';
 import Task, { ITask } from 'components/Task';
 import AddTaskButton from 'components/AddTaskButton';
 import AddTask, { INewTask } from 'components/AddTask';
-
-const MMKV = new MMKVLoader().initialize();
 
 interface ITaskList {
   setIsSignedIn: (isSignedIn: boolean) => void;
