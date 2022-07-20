@@ -2,15 +2,11 @@ import axios from 'axios';
 import moment from 'moment';
 import constants from 'utils/constants';
 import { showError } from 'utils/alertMessages';
+import { INewTask } from 'components/AddTask';
 
 const tasksUrl = `${constants.server}/tasks`;
 
-interface ICreateTask {
- description: string;
- estimateAt: string;
-}
-
-export const create = async (data: ICreateTask) => {
+export const createTask = async (data: INewTask) => {
   try {
     await axios.post(tasksUrl, data);
   } catch (err: any) {
@@ -20,7 +16,7 @@ export const create = async (data: ICreateTask) => {
   return true;
 }
 
-export const read = async () => {
+export const readTasks = async () => {
   try {
     const maxDate = moment().format('YYYY-MM-DD 23:59:59');
     const res = await axios.get(`${tasksUrl}?date=${maxDate}`);
@@ -31,9 +27,9 @@ export const read = async () => {
   }
 }
 
-export const toggle = async () => {
+export const updateTask = async (id: number) => {
   try {
-    await axios.put(tasksUrl);
+    await axios.put(`${tasksUrl}/${id}/toggle`);
   } catch (err: any) {
     showError(err.message);
     return false;
@@ -41,9 +37,9 @@ export const toggle = async () => {
   return true;
 }
 
-export const del = async () => {
+export const delTask = async (id: number) => {
   try {
-    await axios.delete(tasksUrl);
+    await axios.delete(`${tasksUrl}/${id}`);
   } catch (err: any) {
     showError(err.message);
     return false;
