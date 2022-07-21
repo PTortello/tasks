@@ -1,12 +1,12 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import style from 'styles/app';
-import Navigator from 'screens/Navigator';
+import AuthNavigator from 'screens/AuthNavigator';
 
 const App = () => {
   return (
     <SafeAreaView style={style.container}>
-      <Navigator />
+      <AuthNavigator />
     </SafeAreaView>
   );
 };

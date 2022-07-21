@@ -5,15 +5,16 @@ import style from 'styles/addTaskButton';
 import global from 'styles/global';
 
 interface IAddTaskButton {
+  backgroundColor: string;
   openModal: () => void;
 }
 
 const AddTaskButton: React.FC<IAddTaskButton> = (
-  { openModal }
+  { backgroundColor, openModal }
 ) => {
   return (
     <TouchableOpacity
-      style={style.button}
+      style={[style.button, {backgroundColor: backgroundColor}]}
       onPress={openModal}
       activeOpacity={0.7}
     >
