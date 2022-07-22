@@ -22,6 +22,9 @@ const style = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5
   },
+  disabled: {
+    backgroundColor: '#AAAAAA'
+  },
   buttonText: {
     fontFamily: global.fontFamily,
     fontSize: 20,

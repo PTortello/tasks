@@ -10,14 +10,19 @@ interface IHeader {
   subtitle: string;
   title: string;
   setShowDone: () => void;
+  openDrawer: () => void;
 }
 
 const Header: React.FC<IHeader> = (
-  { image, showDone, subtitle, title, setShowDone }
+  { image, showDone, subtitle, title, setShowDone, openDrawer }
 ) => {
   return (
     <ImageBackground source={image} style={style.container}>
-      <IconBar showDone={showDone} setShowDone={setShowDone} />
+      <IconBar
+        showDone={showDone}
+        setShowDone={setShowDone}
+        openDrawer={openDrawer}
+      />
       <TitleBar title={title} subtitle={subtitle} />
     </ImageBackground>
   )

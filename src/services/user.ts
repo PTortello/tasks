@@ -1,5 +1,5 @@
 import axios from 'axios';
-import constants from 'utils/constants';
+import { server } from 'utils/constants';
 import { showError, showSuccess } from 'utils/alertMessages';
 
 export interface IUser {
@@ -11,7 +11,7 @@ export interface IUser {
 
 export const signup = async (data: IUser) => {
   try {
-    await axios.post(`${constants.server}/signup`, data);
+    await axios.post(`${server}/signup`, data);
     showSuccess('Usuário cadastrado!');
   } catch (err: any) {
     showError(err.message);

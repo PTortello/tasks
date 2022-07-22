@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, FlatList, View } from 'react-native';
-import todayImage from '../../assets/imgs/today.jpg';
+import { Alert, FlatList, ImageSourcePropType, View } from 'react-native';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 import dateFormatter from 'utils/dateFormatter';
 import { getLocalData, setLocalData } from 'utils/localData';
 import { createTask, delTask, readTasks, updateTask } from 'services/task';
@@ -11,22 +11,23 @@ import AddTaskButton from 'components/AddTaskButton';
 import AddTask, { INewTask } from 'components/AddTask';
 
 interface ITaskList {
-  setIsSignedIn: (isSignedIn: boolean) => void;
+  backgroundColor: string;
+  daysAhead: number;
+  image: ImageSourcePropType;
+  navigation: DrawerNavigationProp<any>;
+  title: string;
 }
 
 const TaskList: React.FC<ITaskList> = (
-  { setIsSignedIn }
+  { backgroundColor, daysAhead, image, navigation, title }
 ) => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [showDone, setShowDone] = useState<boolean>(true);
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const title = 'Hoje';
-  const today = dateFormatter();  //remover a variavel se for só subtitle
-
   const syncTaskList = async (check: boolean) => {
-    const tasks = check && await readTasks();
+    const tasks = check && await readTasks(daysAhead);
     tasks && setTasks(tasks);
     return tasks;
   }
@@ -74,11 +75,12 @@ const TaskList: React.FC<ITaskList> = (
       <View style={style.container}>
         <View style={style.header}>
           <Header
-            image={todayImage}
+            image={image}
             title={title}
-            subtitle={today}
+            subtitle={dateFormatter()}
             showDone={showDone}
             setShowDone={() => setShowDone(!showDone)}
+            openDrawer={() => navigation.openDrawer()}
           />
         </View>
         <View style={style.taskList}>
@@ -97,7 +99,10 @@ const TaskList: React.FC<ITaskList> = (
             keyExtractor={task => task.id.toString()}
           />
         </View>
-        <AddTaskButton openModal={() => setShowModal(true)} />
+        <AddTaskButton
+          backgroundColor={backgroundColor}
+          openModal={() => setShowModal(true)}
+        />
         <AddTask
           showModal={showModal}
           addTask={addTask}

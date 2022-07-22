@@ -1,5 +1,5 @@
 import axios from 'axios';
-import constants from 'utils/constants';
+import { server } from 'utils/constants';
 import { showError } from 'utils/alertMessages';
 
 interface IAuth {
@@ -9,12 +9,12 @@ interface IAuth {
 
 export const signin = async (data: IAuth) => {
   try {
-    const res = await axios.post(`${constants.server}/signin`, data);
+    const res = await axios.post(`${server}/signin`, data);
     const bearerString = `bearer ${res.data.token}`;
     axios.defaults.headers.common['Authorization'] = bearerString;
+    return {email: res.data.email, name: res.data.name};
   } catch (err: any) {
     showError(err.message);
     return false;
   }
-  return true;
 }
