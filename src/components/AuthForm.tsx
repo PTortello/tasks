@@ -13,10 +13,6 @@ const initialState: IUser = {
   confirmPass: ''
 }
 
-const disabledStyle = {
-  backgroundColor: '#AAAAAA'
-}
-
 interface IAuthForm {
   setIsSignedIn: (isSignedIn: boolean) => void;
 }
@@ -87,7 +83,7 @@ const AuthForm: React.FC<IAuthForm> = (
         onPress={submitForm}
         disabled={!isValidForm}
       >
-        <View style={[style.button, !isValidForm && disabledStyle]}>
+        <View style={[style.button, !isValidForm && style.disabled]}>
           <Text style={style.buttonText}>
             {isNewUser ? 'Cadastrar' : 'Entrar'}
           </Text>

@@ -2,7 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import menuOptions from 'utils/menuOptions';
-import style, { activeColor } from 'styles/taskNavigator';
+import global from 'styles/global';
+import { labelStyle } from 'styles/menu';
 import TaskList from './TaskList';
 import Menu from 'components/Menu';
 
@@ -17,8 +18,8 @@ const TaskNavigator: React.FC<ITaskNavigator> = (
 ) => {
   const screenOptions = {
     headerShown: false,
-    drawerLabelStyle: style.labelStyle,
-    drawerActiveTintColor: activeColor
+    drawerLabelStyle: labelStyle,
+    drawerActiveTintColor: global.colors.menuLabel
   }
 
   return (

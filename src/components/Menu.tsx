@@ -4,6 +4,7 @@ import {
   DrawerItem,
   DrawerItemList
 } from '@react-navigation/drawer';
+import { labelStyle } from 'styles/menu';
 
 interface IAuth {
   props: any;
@@ -16,7 +17,11 @@ const Menu: React.FC<IAuth> = (
   return (
     <DrawerContentScrollView>
       <DrawerItemList  {...props} />
-      <DrawerItem label={'Sair'} onPress={() => setIsSignedIn(false)} />
+      <DrawerItem
+        label={'Sair'}
+        labelStyle={labelStyle}
+        onPress={() => setIsSignedIn(false)}
+      />
     </DrawerContentScrollView>
   )
 }
