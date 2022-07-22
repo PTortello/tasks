@@ -4,6 +4,7 @@ import { IUser, signup } from 'services/user';
 import { signin } from 'services/auth';
 import validateForm from 'utils/validateForm';
 import style from 'styles/authForm';
+import { IUserProfile } from './UserProfile';
 import AuthInput from './AuthInput';
 
 const initialState: IUser = {
@@ -13,12 +14,13 @@ const initialState: IUser = {
   confirmPass: ''
 }
 
-interface IAuthForm {
+export interface IAuthForm {
   setIsSignedIn: (isSignedIn: boolean) => void;
+  setUserProfile: (userProfile: IUserProfile) => void;
 }
 
 const AuthForm: React.FC<IAuthForm> = (
-  { setIsSignedIn }
+  { setIsSignedIn, setUserProfile }
 ) => {
   const [user, setUser] = useState<IUser>({...initialState});
   const [isNewUser, setIsNewUser] = useState<boolean>(false);
@@ -34,7 +36,11 @@ const AuthForm: React.FC<IAuthForm> = (
       await signup(user) && setIsNewUser(false);
       setUser({...initialState});
     } else {
-      await signin(user) && setIsSignedIn(true);
+      const userProfile = await signin(user);
+       if (userProfile) {
+         setIsSignedIn(true);
+         setUserProfile(userProfile);
+       }
     }
   }
 

@@ -4,17 +4,19 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import menuOptions from 'utils/menuOptions';
 import global from 'styles/global';
 import { labelStyle } from 'styles/menu';
+import { IUserProfile } from 'components/UserProfile';
 import TaskList from './TaskList';
 import Menu from 'components/Menu';
 
 const Drawer = createDrawerNavigator();
 
 interface ITaskNavigator {
+  userProfile: IUserProfile;
   setIsSignedIn: (isSignedIn: boolean) => void;
 }
 
 const TaskNavigator: React.FC<ITaskNavigator> = (
-  { setIsSignedIn }
+  { userProfile, setIsSignedIn }
 ) => {
   const screenOptions = {
     headerShown: false,
@@ -27,7 +29,12 @@ const TaskNavigator: React.FC<ITaskNavigator> = (
       <Drawer.Navigator
         screenOptions={screenOptions}
         drawerContent={
-          (props) => <Menu props={props} setIsSignedIn={setIsSignedIn} />
+          (props) =>
+            <Menu
+              props={props}
+              setIsSignedIn={setIsSignedIn}
+              userProfile={userProfile}
+            />
         }
       >
         {menuOptions.map(

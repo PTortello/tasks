@@ -12,9 +12,9 @@ export const signin = async (data: IAuth) => {
     const res = await axios.post(`${server}/signin`, data);
     const bearerString = `bearer ${res.data.token}`;
     axios.defaults.headers.common['Authorization'] = bearerString;
+    return {email: res.data.email, name: res.data.name};
   } catch (err: any) {
     showError(err.message);
     return false;
   }
-  return true;
 }
