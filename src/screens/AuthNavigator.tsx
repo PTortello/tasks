@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoaderContext from 'contexts/LoaderContext';
 import { IUserProfile } from 'components/UserProfile';
 import Auth from './Auth';
 import TaskNavigator from './TaskNavigator';
@@ -10,30 +11,35 @@ const Stack = createNativeStackNavigator();
 const AuthNavigator: React.FC<any> = () => {
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
   const [userProfile, setUserProfile] = useState<IUserProfile>();
+  const { showLoader } = useContext(LoaderContext);
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        {isSignedIn && userProfile
-        ? <Stack.Screen name='TaskNavigator'>
-            {() =>
-              <TaskNavigator
-                setIsSignedIn={setIsSignedIn}
-                userProfile={userProfile}
-              />
+    <>
+      {!showLoader &&
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            {isSignedIn && userProfile
+            ? <Stack.Screen name='TaskNavigator'>
+                {() =>
+                  <TaskNavigator
+                    setIsSignedIn={setIsSignedIn}
+                    userProfile={userProfile}
+                  />
+                }
+            </Stack.Screen>
+            : <Stack.Screen name='Auth'>
+                {() =>
+                  <Auth
+                    setIsSignedIn={setIsSignedIn}
+                    setUserProfile={setUserProfile}
+                  />
+                }
+            </Stack.Screen>
             }
-        </Stack.Screen>
-        : <Stack.Screen name='Auth'>
-            {() =>
-              <Auth
-                setIsSignedIn={setIsSignedIn}
-                setUserProfile={setUserProfile}
-              />
-            }
-        </Stack.Screen>
-        }
-      </Stack.Navigator>
-    </NavigationContainer>
+          </Stack.Navigator>
+        </NavigationContainer>
+      }
+    </>
   )
 };
 

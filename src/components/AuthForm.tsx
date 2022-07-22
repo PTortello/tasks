@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import LoaderContext from 'contexts/LoaderContext';
 import { IUser, signup } from 'services/user';
 import { signin } from 'services/auth';
 import validateForm from 'utils/validateForm';
@@ -25,6 +26,7 @@ const AuthForm: React.FC<IAuthForm> = (
   const [user, setUser] = useState<IUser>({...initialState});
   const [isNewUser, setIsNewUser] = useState<boolean>(false);
   const [isValidForm, setIsValidForm] = useState<boolean>(false);
+  const { setLoaderValue } = useContext(LoaderContext);
 
   const switchForm = () => {
     setUser({...initialState});
@@ -32,16 +34,18 @@ const AuthForm: React.FC<IAuthForm> = (
   }
 
   const submitForm = async () => {
+    setLoaderValue(true);
     if (isNewUser) {
       await signup(user) && setIsNewUser(false);
       setUser({...initialState});
     } else {
       const userProfile = await signin(user);
-       if (userProfile) {
-         setIsSignedIn(true);
-         setUserProfile(userProfile);
-       }
+      if (userProfile) {
+        setIsSignedIn(true);
+        setUserProfile(userProfile);
+      }
     }
+    setLoaderValue(false);
   }
 
   useEffect(() => {
