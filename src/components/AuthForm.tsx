@@ -38,14 +38,16 @@ const AuthForm: React.FC<IAuthForm> = (
     if (isNewUser) {
       await signup(user) && setIsNewUser(false);
       setUser({...initialState});
+      setLoaderValue(false);
     } else {
       const userProfile = await signin(user);
       if (userProfile) {
         setIsSignedIn(true);
         setUserProfile(userProfile);
+      } else {
+        setLoaderValue(false);
       }
     }
-    setLoaderValue(false);
   }
 
   useEffect(() => {
