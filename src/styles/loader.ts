@@ -11,7 +11,7 @@ const style = StyleSheet.create({
     bottom: 0,
     left: 0,
     elevation: 1,
-    backgroundColor: '#FFFFFF'
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
   }
 })
 
