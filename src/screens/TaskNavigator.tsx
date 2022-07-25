@@ -5,8 +5,8 @@ import menuOptions from 'utils/menuOptions';
 import global from 'styles/global';
 import { labelStyle } from 'styles/menu';
 import { IUserProfile } from 'components/UserProfile';
-import TaskList from './TaskList';
 import Menu from 'components/Menu';
+import TaskList from './TaskList';
 
 const Drawer = createDrawerNavigator();
 
