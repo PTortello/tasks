@@ -9,13 +9,7 @@ import TaskList from './TaskList';
 
 const Drawer = createDrawerNavigator();
 
-interface ITaskNavigator {
-  setIsSignedIn: (isSignedIn: boolean) => void;
-}
-
-const TaskNavigator: React.FC<ITaskNavigator> = (
-  { setIsSignedIn }
-) => {
+const TaskNavigator: React.FC<any> = () => {
   const screenOptions = {
     headerShown: false,
     drawerLabelStyle: labelStyle,
@@ -28,7 +22,7 @@ const TaskNavigator: React.FC<ITaskNavigator> = (
         screenOptions={screenOptions}
         drawerContent={
           (props) =>
-            <Menu props={props} setIsSignedIn={setIsSignedIn} />
+            <Menu props={props} />
         }
       >
         {menuOptions.map(

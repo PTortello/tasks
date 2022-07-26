@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import LoaderContext from 'contexts/LoaderContext';
+import isSignedContext from 'contexts/isSignedContext';
+import loaderContext from 'contexts/loaderContext';
 import { IUser, signup } from 'services/user';
 import { signin } from 'services/auth';
 import { USERDATA } from 'utils/constants';
@@ -16,18 +17,13 @@ const initialState: IUser = {
   confirmPass: ''
 }
 
-export interface IAuthForm {
-  setIsSignedIn: (isSignedIn: boolean) => void;
-}
-
-const AuthForm: React.FC<IAuthForm> = (
-  { setIsSignedIn }
-) => {
+const AuthForm: React.FC<any> = () => {
   const [loaded, setLoaded] = useState<boolean>(false);
   const [user, setUser] = useState<IUser>({...initialState});
   const [isNewUser, setIsNewUser] = useState<boolean>(false);
   const [isValidForm, setIsValidForm] = useState<boolean>(false);
-  const { setLoaderValue } = useContext(LoaderContext);
+  const { setIsSigned } = useContext(isSignedContext);
+  const { setShowLoader } = useContext(loaderContext);
 
   const switchForm = () => {
     setUser({...initialState});
@@ -35,15 +31,15 @@ const AuthForm: React.FC<IAuthForm> = (
   }
 
   const submitForm = async () => {
-    setLoaderValue(true);
+    setShowLoader(true);
     if (isNewUser) {
       await signup(user) && setIsNewUser(false);
       setUser({...initialState});
-      setLoaderValue(false);
+      setShowLoader(false);
     } else {
       const signedIn = await signin(user);
-      setIsSignedIn(signedIn);
-      setLoaderValue(signedIn);
+      setIsSigned(signedIn);
+      setShowLoader(signedIn);
     }
   }
 
@@ -55,8 +51,8 @@ const AuthForm: React.FC<IAuthForm> = (
     const getData = async () => {
       const userData = await getLocalData(USERDATA);
       const hasToken = userData && userData.token || false;
-      setIsSignedIn(hasToken);
-      setLoaderValue(hasToken);
+      setIsSigned(hasToken);
+      setShowLoader(hasToken);
       setLoaded(!hasToken);
     }
     !loaded && getData();
