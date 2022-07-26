@@ -5,14 +5,11 @@ import style from 'styles/auth';
 import AuthForm, { IAuthForm } from 'components/AuthForm';
 
 const Auth: React.FC<IAuthForm> = (
-  { setIsSignedIn, setUserProfile }
+  { setIsSignedIn }
 ) => {
   return (
     <ImageBackground source={backgroundImage} style={style.background}>
-      <AuthForm
-        setIsSignedIn={setIsSignedIn}
-        setUserProfile={setUserProfile}
-      />
+      <AuthForm setIsSignedIn={setIsSignedIn} />
     </ImageBackground>
   )
 }

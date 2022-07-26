@@ -1,5 +1,6 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
+import 'services/requestInterceptor';
 import style from 'styles/app';
 import LoaderContext, { useLoader } from 'contexts/LoaderContext';
 import Loader from 'components/Loader';

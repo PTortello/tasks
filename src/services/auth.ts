@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { server } from 'utils/constants';
 import { showError } from 'utils/alertMessages';
+import { SERVER, USERDATA } from 'utils/constants';
+import { setLocalData } from 'utils/localData';
 
 interface IAuth {
   email: string;
@@ -9,12 +10,11 @@ interface IAuth {
 
 export const signin = async (data: IAuth) => {
   try {
-    const res = await axios.post(`${server}/signin`, data);
-    const bearerString = `bearer ${res.data.token}`;
-    axios.defaults.headers.common['Authorization'] = bearerString;
-    return {email: res.data.email, name: res.data.name};
+    const res = await axios.post(`${SERVER}/signin`, data);
+    await setLocalData(USERDATA, res.data);
   } catch (err: any) {
     showError(err.message);
     return false;
   }
+  return true;
 }

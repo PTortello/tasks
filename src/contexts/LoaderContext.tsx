@@ -6,12 +6,12 @@ interface ILoaderContext {
 }
 
 const LoaderContext = createContext<ILoaderContext>({
-  showLoader: false,
+  showLoader: true,
   setLoaderValue: () => {},
 });
 
 export const useLoader = () => {
-  const [showLoader, setLoaderValue] = useState(false);
+  const [showLoader, setLoaderValue] = useState(true);
   return {
     showLoader,
     setLoaderValue,
