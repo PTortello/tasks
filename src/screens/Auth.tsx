@@ -2,14 +2,12 @@ import React from 'react';
 import { ImageBackground } from 'react-native';
 import backgroundImage from '../../assets/imgs/login.jpg';
 import style from 'styles/auth';
-import AuthForm, { IAuthForm } from 'components/AuthForm';
+import AuthForm from 'components/AuthForm';
 
-const Auth: React.FC<IAuthForm> = (
-  { setIsSignedIn }
-) => {
+const Auth: React.FC<any> = () => {
   return (
     <ImageBackground source={backgroundImage} style={style.background}>
-      <AuthForm setIsSignedIn={setIsSignedIn} />
+      <AuthForm />
     </ImageBackground>
   )
 }

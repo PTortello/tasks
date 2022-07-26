@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Alert, FlatList, ImageSourcePropType, View } from 'react-native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
-import LoaderContext from 'contexts/LoaderContext';
+import loaderContext from 'contexts/loaderContext';
 import { SHOWDONE } from 'utils/constants';
 import dateFormatter from 'utils/dateFormatter';
 import { getLocalData, setLocalData } from 'utils/localData';
@@ -27,7 +27,7 @@ const TaskList: React.FC<ITaskList> = (
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [showDone, setShowDone] = useState<boolean>(true);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const { setLoaderValue } = useContext(LoaderContext);
+  const { setShowLoader } = useContext(loaderContext);
 
   const syncTaskList = async (check: boolean) => {
     const tasks = check && await readTasks(daysAhead);
@@ -68,7 +68,7 @@ const TaskList: React.FC<ITaskList> = (
       setShowDone(showDone);
       await syncTaskList(!loaded);
       setLoaded(true);
-      setLoaderValue(false);
+      setShowLoader(false);
     }
     !loaded && getData();
   }, []);

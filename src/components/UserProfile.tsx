@@ -4,7 +4,6 @@ import { Gravatar } from 'react-native-gravatar';
 import { USERDATA } from 'utils/constants';
 import { getLocalData } from 'utils/localData';
 import style from 'styles/userProfile';
-import { IAuthForm } from './AuthForm';
 import Logout from './Logout';
 
 interface IUserData {
@@ -13,9 +12,7 @@ interface IUserData {
   token: string;
 }
 
-const UserProfile: React.FC<IAuthForm> = (
-  { setIsSignedIn }
-) => {
+const UserProfile: React.FC<any> = () => {
   const [user, setUser] = useState<IUserData>();
 
   useEffect(() => {
@@ -45,7 +42,7 @@ const UserProfile: React.FC<IAuthForm> = (
               <Text style={[style.email, style.text]}>{user.email}</Text>
             </View>
           </View>
-          <Logout setIsSignedIn={setIsSignedIn} />
+          <Logout />
         </View>
       }
     </>

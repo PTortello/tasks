@@ -7,15 +7,12 @@ import UserProfile from './UserProfile';
 
 interface IAuth {
   props: any;
-  setIsSignedIn: (isSignedIn: boolean) => void;
 }
 
-const Menu: React.FC<IAuth> = (
-  { props, setIsSignedIn }
-) => {
+const Menu: React.FC<IAuth> = ({ props }) => {
   return (
     <DrawerContentScrollView>
-      <UserProfile setIsSignedIn={setIsSignedIn} />
+      <UserProfile />
       <DrawerItemList  {...props} />
     </DrawerContentScrollView>
   )
