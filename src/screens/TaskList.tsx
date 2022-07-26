@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Alert, FlatList, ImageSourcePropType, View } from 'react-native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import LoaderContext from 'contexts/LoaderContext';
+import { SHOWDONE } from 'utils/constants';
 import dateFormatter from 'utils/dateFormatter';
 import { getLocalData, setLocalData } from 'utils/localData';
 import { createTask, delTask, readTasks, updateTask } from 'services/task';
@@ -56,15 +57,15 @@ const TaskList: React.FC<ITaskList> = (
 
   useEffect(() => {
     const setData = async () => {
-      await setLocalData({ showDone: showDone });
+      await setLocalData(SHOWDONE, showDone);
     }
     loaded && setData();
   }, [showDone]);
 
   useEffect(() => {
     const getData = async () => {
-      const localData = await getLocalData();
-      setShowDone(localData.showDone);
+      const showDone = await getLocalData(SHOWDONE);
+      setShowDone(showDone);
       await syncTaskList(!loaded);
       setLoaded(true);
       setLoaderValue(false);

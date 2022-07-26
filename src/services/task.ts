@@ -1,10 +1,10 @@
 import axios from 'axios';
 import moment from 'moment';
-import { server } from 'utils/constants';
+import { SERVER } from 'utils/constants';
 import { showError } from 'utils/alertMessages';
 import { INewTask } from 'components/AddTask';
 
-const tasksUrl = `${server}/tasks`;
+const tasksUrl = `${SERVER}/tasks`;
 
 export const createTask = async (task: INewTask) => {
   try {

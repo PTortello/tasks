@@ -4,28 +4,32 @@ import {
   DrawerItem,
   DrawerItemList
 } from '@react-navigation/drawer';
+import { USERDATA } from 'utils/constants';
+import { removeLocalData } from 'utils/localData';
 import { labelStyle } from 'styles/menu';
-import UserProfile, { IUserProfile } from './UserProfile';
+import UserProfile from './UserProfile';
 
 interface IAuth {
   props: any;
-  userProfile: IUserProfile;
   setIsSignedIn: (isSignedIn: boolean) => void;
 }
 
 const Menu: React.FC<IAuth> = (
-  { props, setIsSignedIn, userProfile }
+  { props, setIsSignedIn }
 ) => {
-  const {email, name} = userProfile;
+  const logout = () => {
+    removeLocalData(USERDATA);
+    setIsSignedIn(false);
+  }
 
   return (
     <DrawerContentScrollView>
-      <UserProfile name={name} email={email} />
+      <UserProfile />
       <DrawerItemList  {...props} />
       <DrawerItem
         label={'Sair'}
         labelStyle={labelStyle}
-        onPress={() => setIsSignedIn(false)}
+        onPress={logout}
       />
     </DrawerContentScrollView>
   )
