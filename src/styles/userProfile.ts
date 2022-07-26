@@ -25,12 +25,12 @@ const style = StyleSheet.create({
     borderColor: '#DDDDDD',
     borderWidth: 2,
     borderRadius: 30,
-    margin: 10
+    margin: 10,
+    marginBottom: 5
   },
   name: {
     fontSize: 20,
-    color: global.colors.mainText,
-    marginBottom: 5
+    color: global.colors.mainText
   },
   email: {
     fontSize: 15,
