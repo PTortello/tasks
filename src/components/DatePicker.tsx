@@ -1,8 +1,9 @@
 import React from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import dateFormatter from 'utils/dateFormatter';
 import style from 'styles/datePicker';
-import Button from './Button';
 
 interface IDatePicker {
   value: Date;
@@ -22,12 +23,12 @@ const DatePicker: React.FC<IDatePicker> = (
   };
 
   return (
-    <Button
-      label={label}
-      onPress={showDatePicker}
-      style={style.button}
-      activeOpacity={0.7}
-    />
+    <TouchableOpacity onPress={showDatePicker} activeOpacity={0.7}>
+      <View style={style.container}>
+        <Icon style={style.icon} name='calendar' size={24} color='#FFFFFF' />
+        <Text style={style.label}>{label}</Text>
+      </View>
+    </TouchableOpacity>
   )
 }
 

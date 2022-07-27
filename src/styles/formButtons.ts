@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
-  buttons: {
+  container: {
     flexDirection: 'row',
     justifyContent: 'flex-end'
-  }  
+  }
 })
 
 export default style;

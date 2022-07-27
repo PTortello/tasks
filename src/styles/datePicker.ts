@@ -2,16 +2,24 @@ import { StyleSheet } from "react-native";
 import global from "./global";
 
 const style = StyleSheet.create({
-  button: {
-    fontFamily: global.fontFamily,
-    color: global.colors.secondary,
+  container: {
     backgroundColor: global.colors.today,
-    height: 35,
+    height: 48,
     borderRadius: 6,
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 15,
+    marginHorizontal: 100
+  },
+  icon: {
+    marginLeft: 15
+  },
+  label: {
+    flexGrow: 1,
     textAlign: 'center',
-    textAlignVertical: 'center',
-    marginHorizontal: 100,
-  }  
+    fontFamily: global.fontFamily,
+    color: global.colors.secondary
+  }
 })
 
 export default style;

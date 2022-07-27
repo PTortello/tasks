@@ -1,6 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
+  container: {
+    height: 40,
+    width: 40,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   check: {
     height: 25,
     width: 25,
