@@ -15,8 +15,8 @@ const style = StyleSheet.create({
   },
   input: {
     fontFamily: global.fontFamily,
-    height: 40,
-    margin: 15,
+    height: 48,
+    marginHorizontal: 15,
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: '#E3E3E3',

@@ -33,13 +33,13 @@ const TaskForm: React.FC<ITaskForm> = (
   return (
     <View style={style.container}>
       <Text style={style.header}>Nova Tarefa</Text>
+      <DatePicker value={date} onChangeDate={setDate} />
       <TextInput
         style={style.input}
         placeholder='Descrição da Tarefa...'
         value={text}
         onChangeText={setText}
       />
-      <DatePicker value={date} onChangeDate={setDate} />
       <FormButtons closeModal={closeModal} saveTask={saveTask} />
     </View>
   )

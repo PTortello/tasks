@@ -12,7 +12,7 @@ const FormButtons: React.FC<IFormButtons> = (
   { closeModal, saveTask }
 ) => {
   return (
-    <View style={style.buttons}>
+    <View style={style.container}>
       <Button label='Cancelar' onPress={closeModal} />
       <Button label='Salvar' onPress={saveTask} />
     </View>

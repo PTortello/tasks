@@ -15,8 +15,10 @@ const CheckBox: React.FC<ICheckBox> = (
 
   return (
     <TouchableWithoutFeedback onPress={toggleTask}>
-      <View style={[style.check, statusStyle]}>
-        {doneAt && <Icon name='check' size={20} color='#FFFFFF' />}
+      <View style={style.container}>
+        <View style={[style.check, statusStyle]}>
+          {doneAt && <Icon name='check' size={20} color='#FFFFFF' />}
+        </View>
       </View>
     </TouchableWithoutFeedback>
   )

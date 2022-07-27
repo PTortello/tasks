@@ -8,8 +8,8 @@ const style = StyleSheet.create({
     marginTop: 10
   },
   touchable: {
-    height: 40,
-    width: 40,
+    height: 48,
+    width: 48,
     justifyContent: 'center',
     alignItems: 'center'
   }
