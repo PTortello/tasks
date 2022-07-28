@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SERVER } from 'utils/constants';
+import { SERVER } from 'data/constants';
 import { showError, showSuccess } from 'utils/alertMessages';
 
 export interface IUser {

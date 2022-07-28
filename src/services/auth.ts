@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { showError } from 'utils/alertMessages';
-import { SERVER, USERDATA } from 'utils/constants';
+import { SERVER, USERDATA } from 'data/constants';
 import { setLocalData } from 'utils/localData';
 
 interface IAuth {

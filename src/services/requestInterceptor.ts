@@ -1,5 +1,5 @@
 import axios from "axios";
-import { USERDATA } from 'utils/constants';
+import { USERDATA } from 'data/constants';
 import { getLocalData } from 'utils/localData';
 
 axios.interceptors.request.use(

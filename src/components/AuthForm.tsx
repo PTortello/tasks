@@ -4,7 +4,7 @@ import isSignedContext from 'contexts/isSignedContext';
 import loaderContext from 'contexts/loaderContext';
 import { IUser, signup } from 'services/user';
 import { signin } from 'services/auth';
-import { USERDATA } from 'utils/constants';
+import { USERDATA } from 'data/constants';
 import { getLocalData } from 'utils/localData';
 import validateForm from 'utils/validateForm';
 import style from 'styles/authForm';

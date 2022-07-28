@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Alert, FlatList, ImageSourcePropType, View } from 'react-native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import loaderContext from 'contexts/loaderContext';
-import { SHOWDONE } from 'utils/constants';
+import { SHOWDONE } from 'data/constants';
 import dateFormatter from 'utils/dateFormatter';
 import { getLocalData, setLocalData } from 'utils/localData';
 import { createTask, delTask, readTasks, updateTask } from 'services/task';

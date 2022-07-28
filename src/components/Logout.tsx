@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import isSignedContext from 'contexts/isSignedContext';
-import { USERDATA } from 'utils/constants';
+import { USERDATA } from 'data/constants';
 import { removeLocalData } from 'utils/localData';
 import style from 'styles/logout';
 

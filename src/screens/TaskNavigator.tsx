@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import menuOptions from 'utils/menuOptions';
+import menuOptions from 'data/menuOptions';
 import global from 'styles/global';
 import { labelStyle } from 'styles/taskNavigator';
 import Menu from 'components/Menu';

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import moment from 'moment';
-import { SERVER } from 'utils/constants';
+import { SERVER } from 'data/constants';
 import { showError } from 'utils/alertMessages';
 import { INewTask } from 'components/AddTask';
 

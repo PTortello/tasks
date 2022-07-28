@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { Gravatar } from 'react-native-gravatar';
-import { USERDATA } from 'utils/constants';
+import { USERDATA } from 'data/constants';
 import { getLocalData } from 'utils/localData';
 import style from 'styles/userProfile';
 import Logout from './Logout';
