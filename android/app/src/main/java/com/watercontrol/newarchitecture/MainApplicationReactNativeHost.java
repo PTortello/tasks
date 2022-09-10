@@ -1,4 +1,4 @@
-package com.tasks.newarchitecture;
+package com.watercontrol.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.tasks.BuildConfig;
-import com.tasks.newarchitecture.components.MainComponentsRegistry;
-import com.tasks.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.watercontrol.BuildConfig;
+import com.watercontrol.newarchitecture.components.MainComponentsRegistry;
+import com.watercontrol.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
